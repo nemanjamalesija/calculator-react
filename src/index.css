@@ -15,6 +15,10 @@ body {
 .container {
   width: 50rem;
   margin: 0 auto;
+  padding: 2.4rem 4rem 4rem 4rem;
+  background-color: #fafafa;
+  border-radius: 11px;
+  margin-top: 15rem;
 }
 
 .numbers-operations {
@@ -22,10 +26,34 @@ body {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.clear,
+.delete {
+  grid-column: span 2;
+  padding: 1rem;
+  text-align: center;
+}
+
 .clear {
-  grid-column: 1 / span 2;
+  background-color: red;
 }
 
 .delete {
-  grid-template-columns: 2 / span 2;
+  background-color: #f3ef;
+}
+
+.number,
+.operation {
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px solid #444;
+  cursor: pointer;
+}
+
+.num-zero,
+.op-equal {
+  grid-column: span 2;
+}
+
+.op-equal {
+  grid-row: 5;
 }

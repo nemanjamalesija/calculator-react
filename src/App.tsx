@@ -37,9 +37,9 @@ function App() {
         <div className="number">2</div>
         <div className="number">3</div>
         <div className="operation">+</div>
-        <div className="number">0</div>
+        <div className="number num-zero">0</div>
         <div className="dot">.</div>
-        <div className="operation">=</div>
+        <div className="operation op-equal">=</div>
       </div>
     </div>
   );
