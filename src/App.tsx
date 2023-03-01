@@ -12,9 +12,21 @@ export const initialState: calculator = {
   previousOperand: '',
   tempResult: 0,
 };
+export type ACTIONS = {
+  type: 'STORE_CURRENT_OPERAND';
+  payload?: string;
+};
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const storeCurrentOperand = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const input = e.currentTarget.textContent as string;
+
+    dispatch({ type: 'STORE_CURRENT_OPERAND', payload: input });
+  };
 
   return (
     <div className="container">
@@ -37,7 +49,9 @@ function App() {
         <div className="number">2</div>
         <div className="number">3</div>
         <div className="operation">+</div>
-        <div className="number num-zero">0</div>
+        <div className="number num-zero" onClick={storeCurrentOperand}>
+          0
+        </div>
         <div className="dot">.</div>
         <div className="operation op-equal">=</div>
       </div>

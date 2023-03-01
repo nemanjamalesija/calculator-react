@@ -1,6 +1,6 @@
-import { calculator } from './App';
+import { ACTIONS, calculator } from './App';
 
-const reducer = (state: calculator, action: any): any => {
+const reducer = (state: calculator, action: ACTIONS): any => {
   return { ...state };
 };
 
