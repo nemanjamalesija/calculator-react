@@ -64,8 +64,14 @@ body {
   display: grid;
   grid-template-rows: 1fr 1fr;
   border: 1px solid #333;
+  direction: rtl;
 }
 
 .previous-operand {
   border-bottom: 1px solid #333;
+}
+
+.previous-operand,
+.current-oprand {
+  text-align: start;
 }
