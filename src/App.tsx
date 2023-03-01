@@ -32,7 +32,7 @@ function App() {
     <div className="container">
       <div className="screen">
         <div className="previous-operand"></div>
-        <div className="current-operand"></div>
+        <div className="current-operand">{state.currentOperand}</div>
       </div>
       <div className="numbers-operations">
         <div className="clear">clear</div>
