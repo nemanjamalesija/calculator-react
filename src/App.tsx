@@ -13,7 +13,7 @@ export const initialState: calculator = {
   tempResult: 0,
 };
 export type ACTIONS = {
-  type: 'STORE_CURRENT_OPERAND';
+  type: 'STORE_CURRENT_OPERAND' | 'SELECT_OPERATION';
   payload?: string;
 };
 
@@ -28,10 +28,16 @@ function App() {
     dispatch({ type: 'STORE_CURRENT_OPERAND', payload: input });
   };
 
+  const selectOperation = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const input = e.currentTarget.textContent as string;
+
+    dispatch({ type: 'SELECT_OPERATION', payload: input });
+  };
+
   return (
     <div className="container">
       <div className="screen">
-        <div className="previous-operand"></div>
+        <div className="previous-operand">{state.previousOperand}</div>
         <div className="current-operand">{state.currentOperand}</div>
       </div>
       <div className="numbers-operations">
@@ -46,7 +52,9 @@ function App() {
         <div className="number" onClick={storeCurrentOperand}>
           9
         </div>
-        <div className="operation">x</div>
+        <div className="operation" onClick={selectOperation}>
+          x
+        </div>
         <div className="number" onClick={storeCurrentOperand}>
           4
         </div>
@@ -56,7 +64,9 @@ function App() {
         <div className="number" onClick={storeCurrentOperand}>
           6
         </div>
-        <div className="operation">-</div>
+        <div className="operation" onClick={selectOperation}>
+          -
+        </div>
         <div className="number" onClick={storeCurrentOperand}>
           1
         </div>
@@ -66,7 +76,9 @@ function App() {
         <div className="number" onClick={storeCurrentOperand}>
           3
         </div>
-        <div className="operation">+</div>
+        <div className="operation" onClick={selectOperation}>
+          +
+        </div>
         <div className="number num-zero" onClick={storeCurrentOperand}>
           0
         </div>
