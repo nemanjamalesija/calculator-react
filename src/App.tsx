@@ -79,11 +79,15 @@ function App() {
         <div className="operation" onClick={selectOperation}>
           +
         </div>
+
+        <div className="dot">.</div>
+        <div className="operation op-equal">=</div>
         <div className="number num-zero" onClick={storeCurrentOperand}>
           0
         </div>
-        <div className="dot">.</div>
-        <div className="operation op-equal">=</div>
+        <div className="operation operation-divide" onClick={selectOperation}>
+          /
+        </div>
       </div>
     </div>
   );
