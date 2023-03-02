@@ -37,7 +37,9 @@ function App() {
   return (
     <div className="container">
       <div className="screen">
-        <div className="previous-operand">{state.previousOperand}</div>
+        <div className="previous-operand">
+          {state.operation} {state.previousOperand}
+        </div>
         <div className="current-operand">{state.currentOperand}</div>
       </div>
       <div className="numbers-operations">

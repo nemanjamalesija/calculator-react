@@ -1,5 +1,42 @@
 import { ACTIONS, calculator } from './App';
 
+const addition = (a: number, b: number) => {
+  return b + a;
+};
+
+const subtract = (a: number, b: number) => {
+  return b - a;
+};
+
+const multiply = (a: number, b: number) => {
+  return b * a;
+};
+
+const divide = (a: number, b: number) => {
+  return b / a;
+};
+
+const evaluate = (operation: string, a: number, b: number) => {
+  if (operation === '+') {
+    return addition(a, b);
+  }
+  if (operation === '-') {
+    return subtract(a, b);
+  }
+  if (operation === 'x') {
+    return multiply(a, b);
+  }
+  if (operation === '/') {
+    if (a === 0) {
+      {
+        alert("You can't divide by 0");
+        return '';
+      }
+    }
+    return divide(a, b);
+  }
+};
+
 const reducer = (state: calculator, action: ACTIONS): any => {
   const { type, payload } = action;
 
@@ -31,30 +68,20 @@ const reducer = (state: calculator, action: ACTIONS): any => {
       const prevOprandUpdate = Number(state.previousOperand);
 
       let result;
-      if (state.operation === '+') {
-        result = prevOprandUpdate + currentOprandUpdate;
-      }
-      if (state.operation === '-') {
-        result = prevOprandUpdate - currentOprandUpdate;
-      }
-      if (state.operation === 'x') {
-        result = prevOprandUpdate * currentOprandUpdate;
-      }
+
       if (state.operation === '/') {
         if (state.currentOperand === '0') {
-          {
-            alert("You can't divide by 0");
-            result = '';
-            return {
-              ...state,
-              currentOperand: result,
-              previousOperand: '',
-              operation: payload,
-            };
-          }
+          alert("You can't divide by 0");
+          result = '';
+          return {
+            ...state,
+            currentOperand: result,
+            previousOperand: '',
+            operation: payload,
+          };
         }
-        result = prevOprandUpdate / currentOprandUpdate;
       }
+      result = evaluate(state.operation, currentOprandUpdate, prevOprandUpdate);
 
       return {
         ...state,
