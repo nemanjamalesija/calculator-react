@@ -26,11 +26,9 @@ const reducer = (state: calculator, action: ACTIONS): any => {
         result = Number(state.currentOperand) * Number(state.previousOperand);
       }
       if (payload === '/' && state.currentOperand !== '0') {
-        result = Number(state.currentOperand) * Number(state.previousOperand);
-      }
-      return alert("You can't divide by 0");
-
-      return { ...state, currentOperand: result, previousOperand: '' };
+        result = Number(state.currentOperand) / Number(state.previousOperand);
+        return { ...state, currentOperand: result, previousOperand: '' };
+      } else alert("You can't divide by 0");
     }
 
     return {
