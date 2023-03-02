@@ -22,6 +22,9 @@ const reducer = (state: calculator, action: ACTIONS): any => {
       if (payload === '+') {
         result = Number(state.currentOperand) + Number(state.previousOperand);
       }
+      if (payload === 'x') {
+        result = Number(state.currentOperand) * Number(state.previousOperand);
+      }
 
       return { ...state, currentOperand: result, previousOperand: '' };
     }
