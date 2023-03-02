@@ -6,7 +6,7 @@ const reducer = (state: calculator, action: ACTIONS): any => {
   if (type === 'STORE_CURRENT_OPERAND') {
     const input = payload as string;
 
-    if (state.currentOperand && !state.previousOperand) {
+    if (state.currentOperand && !state.previousOperand && state.operation) {
       const prevOperand = state.currentOperand;
       const currOperand = '';
 
@@ -42,7 +42,7 @@ const reducer = (state: calculator, action: ACTIONS): any => {
       }
       if (state.operation === '/') {
         if (state.currentOperand === '0') {
-          return alert("You can't divide by 0");
+          alert("You can't divide by 0");
         }
         result = prevOprandUpdate / currentOprandUpdate;
       }
