@@ -14,7 +14,6 @@ const reducer = (state: calculator, action: ACTIONS): any => {
         ...state,
         currentOperand: currOperand + input,
         previousOperand: prevOperand,
-        operation: '',
       };
     }
 
@@ -32,16 +31,16 @@ const reducer = (state: calculator, action: ACTIONS): any => {
       const prevOprandUpdate = Number(state.previousOperand);
 
       let result;
-      if (payload === '+') {
+      if (state.operation === '+') {
         result = prevOprandUpdate + currentOprandUpdate;
       }
-      if (payload === '-') {
+      if (state.operation === '-') {
         result = prevOprandUpdate - currentOprandUpdate;
       }
-      if (payload === 'x') {
+      if (state.operation === 'x') {
         result = prevOprandUpdate * currentOprandUpdate;
       }
-      if (payload === '/') {
+      if (state.operation === '/') {
         if (state.currentOperand === '0') {
           return alert("You can't divide by 0");
         }
@@ -52,7 +51,7 @@ const reducer = (state: calculator, action: ACTIONS): any => {
         ...state,
         currentOperand: result,
         previousOperand: '',
-        operation: '',
+        operation: payload,
       };
     } else {
       return {
