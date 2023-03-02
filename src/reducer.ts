@@ -42,7 +42,16 @@ const reducer = (state: calculator, action: ACTIONS): any => {
       }
       if (state.operation === '/') {
         if (state.currentOperand === '0') {
-          alert("You can't divide by 0");
+          {
+            alert("You can't divide by 0");
+            result = '';
+            return {
+              ...state,
+              currentOperand: result,
+              previousOperand: '',
+              operation: payload,
+            };
+          }
         }
         result = prevOprandUpdate / currentOprandUpdate;
       }
