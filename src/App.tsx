@@ -4,13 +4,13 @@ import reducer from './reducer';
 export type calculator = {
   currentOperand: string | number;
   previousOperand: string | number;
-  tempResult: number;
+  operation: string;
 };
 
 export const initialState: calculator = {
   currentOperand: '',
   previousOperand: '',
-  tempResult: 0,
+  operation: '',
 };
 export type ACTIONS = {
   type: 'STORE_CURRENT_OPERAND' | 'SELECT_OPERATION';

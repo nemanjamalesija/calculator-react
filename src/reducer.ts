@@ -6,6 +6,18 @@ const reducer = (state: calculator, action: ACTIONS): any => {
   if (type === 'STORE_CURRENT_OPERAND') {
     const input = payload as string;
 
+    if (state.currentOperand && !state.previousOperand) {
+      const prevOperand = state.currentOperand;
+      const currOperand = '';
+
+      return {
+        ...state,
+        currentOperand: currOperand + input,
+        previousOperand: prevOperand,
+        operation: '',
+      };
+    }
+
     return {
       ...state,
       currentOperand: state.currentOperand + input,
@@ -13,32 +25,43 @@ const reducer = (state: calculator, action: ACTIONS): any => {
   }
 
   if (type === 'SELECT_OPERATION') {
-    console.log(state.currentOperand, state.previousOperand);
-
-    const prevOperandUpdate = Number(state.currentOperand);
+    const prevOperand = state.currentOperand;
 
     if (state.currentOperand && state.previousOperand) {
+      const currentOprandUpdate = Number(state.currentOperand);
+      const prevOprandUpdate = Number(state.previousOperand);
+
       let result;
       if (payload === '+') {
-        result = Number(state.currentOperand) + Number(state.previousOperand);
+        result = prevOprandUpdate + currentOprandUpdate;
       }
       if (payload === '-') {
-        result = Number(state.currentOperand) - Number(state.previousOperand);
+        result = prevOprandUpdate - currentOprandUpdate;
       }
       if (payload === 'x') {
-        result = Number(state.currentOperand) * Number(state.previousOperand);
+        result = prevOprandUpdate * currentOprandUpdate;
       }
-      if (payload === '/' && state.currentOperand !== '0') {
-        result = Number(state.currentOperand) / Number(state.previousOperand);
-        return { ...state, currentOperand: result, previousOperand: '' };
-      } else alert("You can't divide by 0");
-    }
+      if (payload === '/') {
+        if (state.currentOperand === '0') {
+          return alert("You can't divide by 0");
+        }
+        result = prevOprandUpdate / currentOprandUpdate;
+      }
 
-    return {
-      ...state,
-      currentOperand: '',
-      previousOperand: prevOperandUpdate,
-    };
+      return {
+        ...state,
+        currentOperand: result,
+        previousOperand: '',
+        operation: '',
+      };
+    } else {
+      return {
+        ...state,
+        currentOperand: '',
+        previousOperand: prevOperand,
+        operation: payload,
+      };
+    }
   }
 
   return { ...state };
