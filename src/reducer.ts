@@ -1,8 +1,10 @@
 import { ACTIONS, calculator } from './App';
 
 const reducer = (state: calculator, action: ACTIONS): any => {
-  if (action.type === 'STORE_CURRENT_OPERAND') {
-    const input = action.payload as string;
+  const { type, payload } = action;
+
+  if (type === 'STORE_CURRENT_OPERAND') {
+    const input = payload as string;
 
     return {
       ...state,
