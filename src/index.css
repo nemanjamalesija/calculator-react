@@ -63,16 +63,6 @@ body {
   grid-column: 4;
 }
 
-.dot {
-  grid-column: 3;
-  text-align: center;
-  border: 1px solid #333;
-}
-
-.op-equal {
-  grid-row: 6;
-}
-
 .screen {
   min-height: 10rem;
   background-color: #fafafa;

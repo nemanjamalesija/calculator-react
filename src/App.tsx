@@ -13,7 +13,7 @@ export const initialState: calculator = {
   operation: '',
 };
 export type ACTIONS = {
-  type: 'STORE_CURRENT_OPERAND' | 'SELECT_OPERATION';
+  type: 'STORE_CURRENT_OPERAND' | 'SELECT_OPERATION' | 'ADD_DOT';
   payload?: string;
 };
 
@@ -82,7 +82,9 @@ function App() {
           +
         </div>
 
-        <div className="dot">.</div>
+        <div className="number dot" onClick={storeCurrentOperand}>
+          .
+        </div>
         <div className="operation op-equal">=</div>
         <div className="number num-zero" onClick={storeCurrentOperand}>
           0

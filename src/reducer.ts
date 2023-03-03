@@ -44,6 +44,11 @@ const reducer = (state: calculator, action: ACTIONS): any => {
     const input = payload as string;
 
     if (
+      (!state.currentOperand && input === '.') ||
+      (input === '.' && String(state.currentOperand).includes('.'))
+    )
+      return { ...state };
+    if (
       (state.currentOperand && !state.previousOperand && state.operation) ||
       state.currentOperand === 0
     ) {
