@@ -77,6 +77,9 @@ const reducer = (state: calculator, action: ACTIONS): any => {
   if (type === 'SELECT_OPERATION') {
     const prevOperand = state.currentOperand;
 
+    if (state.operation && state.previousOperand && !state.currentOperand)
+      return { ...state };
+
     if (state.currentOperand && state.previousOperand) {
       const currentOprandUpdate = Number(state.currentOperand);
       const prevOprandUpdate = Number(state.previousOperand);
