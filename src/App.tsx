@@ -13,7 +13,11 @@ export const initialState: calculator = {
   operation: '',
 };
 export type ACTIONS = {
-  type: 'STORE_CURRENT_OPERAND' | 'SELECT_OPERATION' | 'EVALUATE';
+  type:
+    | 'STORE_CURRENT_OPERAND'
+    | 'SELECT_OPERATION'
+    | 'EVALUATE'
+    | 'DELETE_NUMBER';
   payload?: string;
 };
 
@@ -38,6 +42,10 @@ function App() {
     dispatch({ type: 'EVALUATE' });
   };
 
+  const deleteNumber = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    dispatch({ type: 'DELETE_NUMBER' });
+  };
+
   return (
     <div className="container">
       <div className="screen">
@@ -48,7 +56,9 @@ function App() {
       </div>
       <div className="numbers-operations">
         <div className="clear">clear</div>
-        <div className="delete">delete</div>
+        <div className="delete" onClick={deleteNumber}>
+          delete
+        </div>
         <div className="number" onClick={storeCurrentOperand}>
           7
         </div>

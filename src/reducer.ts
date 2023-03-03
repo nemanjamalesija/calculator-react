@@ -139,6 +139,12 @@ const reducer = (state: calculator, action: ACTIONS): any => {
     };
   }
 
+  if (type === 'DELETE_NUMBER') {
+    const currentOperandDeleted = String(state.currentOperand).slice(0, -1);
+
+    return { ...state, currentOperand: currentOperandDeleted };
+  }
+
   return { ...state };
 };
 
