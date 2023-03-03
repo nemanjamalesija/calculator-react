@@ -43,7 +43,10 @@ const reducer = (state: calculator, action: ACTIONS): any => {
   if (type === 'STORE_CURRENT_OPERAND') {
     const input = payload as string;
 
-    if (state.currentOperand && !state.previousOperand && state.operation) {
+    if (
+      (state.currentOperand && !state.previousOperand && state.operation) ||
+      state.currentOperand === 0
+    ) {
       const prevOperand = state.currentOperand;
       const currOperand = '';
 
