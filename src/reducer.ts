@@ -43,11 +43,14 @@ const reducer = (state: calculator, action: ACTIONS): any => {
   if (type === 'STORE_CURRENT_OPERAND') {
     const input = payload as string;
 
-    if (
-      (!state.currentOperand && input === '.') ||
-      (input === '.' && String(state.currentOperand).includes('.'))
-    )
+    if (input === '.' && String(state.currentOperand).includes('.')) {
       return { ...state };
+    }
+
+    if (input === '0' && String(state.currentOperand).includes('0')) {
+      return { ...state };
+    }
+
     if (
       (state.currentOperand && !state.previousOperand && state.operation) ||
       state.currentOperand === 0
@@ -55,16 +58,18 @@ const reducer = (state: calculator, action: ACTIONS): any => {
       const prevOperand = state.currentOperand;
       const currOperand = '';
 
-      return {
-        ...state,
-        currentOperand: currOperand + input,
-        previousOperand: prevOperand,
-      };
+      if ((!state.currentOperand && input === '.') || !input.includes('.')) {
+        return {
+          ...state,
+          currentOperand: currOperand + input,
+          previousOperand: prevOperand,
+        };
+      } else return { ...state };
     }
-
+    console.log(state.currentOperand, input);
     return {
       ...state,
-      currentOperand: state.currentOperand + input,
+      currentOperand: `${state.currentOperand}${input}`,
     };
   }
 
