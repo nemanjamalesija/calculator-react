@@ -75,8 +75,3 @@ body {
 .previous-operand {
   border-bottom: 1px solid #333;
 }
-
-.previous-operand,
-.current-oprand {
-  text-align: start;
-}
