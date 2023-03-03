@@ -27,12 +27,6 @@ const evaluate = (operation: string, a: number, b: number) => {
     return multiply(a, b);
   }
   if (operation === '/') {
-    if (a === 0) {
-      {
-        alert("You can't divide by 0");
-        return '';
-      }
-    }
     return divide(a, b);
   }
 };
@@ -117,6 +111,8 @@ const reducer = (state: calculator, action: ACTIONS): any => {
   }
 
   if (type === 'EVALUATE') {
+    if (!state.currentOperand || !state.previousOperand) return { ...state };
+
     const currentOprandUpdate = Number(state.currentOperand);
     const prevOprandUpdate = Number(state.previousOperand);
 
@@ -130,17 +126,16 @@ const reducer = (state: calculator, action: ACTIONS): any => {
           ...state,
           currentOperand: result,
           previousOperand: '',
-          operation: payload,
         };
       }
     }
+
     result = evaluate(state.operation, currentOprandUpdate, prevOprandUpdate);
 
     return {
       ...state,
       currentOperand: result,
       previousOperand: '',
-      operation: payload,
     };
   }
 
