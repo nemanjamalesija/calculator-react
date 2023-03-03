@@ -113,6 +113,34 @@ const reducer = (state: calculator, action: ACTIONS): any => {
     }
   }
 
+  if (type === 'EVALUATE') {
+    const currentOprandUpdate = Number(state.currentOperand);
+    const prevOprandUpdate = Number(state.previousOperand);
+
+    let result;
+
+    if (state.operation === '/') {
+      if (state.currentOperand === '0') {
+        alert("You can't divide by 0");
+        result = '';
+        return {
+          ...state,
+          currentOperand: result,
+          previousOperand: '',
+          operation: payload,
+        };
+      }
+    }
+    result = evaluate(state.operation, currentOprandUpdate, prevOprandUpdate);
+
+    return {
+      ...state,
+      currentOperand: result,
+      previousOperand: '',
+      operation: payload,
+    };
+  }
+
   return { ...state };
 };
 

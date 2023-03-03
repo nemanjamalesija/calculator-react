@@ -13,7 +13,7 @@ export const initialState: calculator = {
   operation: '',
 };
 export type ACTIONS = {
-  type: 'STORE_CURRENT_OPERAND' | 'SELECT_OPERATION' | 'ADD_DOT';
+  type: 'STORE_CURRENT_OPERAND' | 'SELECT_OPERATION' | 'EVALUATE';
   payload?: string;
 };
 
@@ -32,6 +32,10 @@ function App() {
     const input = e.currentTarget.textContent as string;
 
     dispatch({ type: 'SELECT_OPERATION', payload: input });
+  };
+
+  const evaluate = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    dispatch({ type: 'EVALUATE' });
   };
 
   return (
@@ -85,7 +89,9 @@ function App() {
         <div className="number dot" onClick={storeCurrentOperand}>
           .
         </div>
-        <div className="operation op-equal">=</div>
+        <div className="operation op-equal" onClick={evaluate}>
+          =
+        </div>
         <div className="number num-zero" onClick={storeCurrentOperand}>
           0
         </div>
