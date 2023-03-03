@@ -17,7 +17,8 @@ export type ACTIONS = {
     | 'STORE_CURRENT_OPERAND'
     | 'SELECT_OPERATION'
     | 'EVALUATE'
-    | 'DELETE_NUMBER';
+    | 'DELETE_NUMBER'
+    | 'CLEAR';
   payload?: string;
 };
 
@@ -46,6 +47,10 @@ function App() {
     dispatch({ type: 'DELETE_NUMBER' });
   };
 
+  const clearAll = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    dispatch({ type: 'CLEAR' });
+  };
+
   return (
     <div className="container">
       <div className="screen">
@@ -55,7 +60,9 @@ function App() {
         <div className="current-operand">{state.currentOperand}</div>
       </div>
       <div className="numbers-operations">
-        <div className="clear">clear</div>
+        <div className="clear" onClick={clearAll}>
+          clear
+        </div>
         <div className="delete" onClick={deleteNumber}>
           delete
         </div>

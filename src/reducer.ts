@@ -145,6 +145,8 @@ const reducer = (state: calculator, action: ACTIONS): any => {
     return { ...state, currentOperand: currentOperandDeleted };
   }
 
+  if (type === 'CLEAR')
+    return { currentOperand: '', previousOperand: '', operation: '' };
   return { ...state };
 };
 
